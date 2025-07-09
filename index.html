@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dezmembrari Dacia Vrancea</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
+    header { background: #900; color: white; padding: 20px; text-align: center; }
+    main { padding: 20px; }
+    form { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto 40px; }
+    form label { display: block; margin-top: 10px; }
+    form select, form input, form textarea { width: 100%; padding: 8px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
+    form button { margin-top: 15px; padding: 10px 15px; background: #900; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .footer { text-align: center; padding: 20px; background: #222; color: white; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dezmembrări Dacia Vrancea</h1>
+    <p>Piese din dezmembrări pentru Dacia Logan, Duster, Sandero și alte modele</p>
+  </header>
+
+  <main>
+    <h2>Cere o piesă</h2>
+    <form>
+      <label for="model">Model Dacia:</label>
+      <select id="model">
+        <option>Logan</option>
+        <option>Duster</option>
+        <option>Sandero</option>
+        <option>Dokker</option>
+        <option>Lodgy</option>
+      </select>
+
+      <label for="caroserie">Tip caroserie:</label>
+      <select id="caroserie">
+        <option>Berline</option>
+        <option>Break</option>
+        <option>Van</option>
+        <option>SUV</option>
+      </select>
+
+      <label for="motorizare">Motorizare:</label>
+      <input type="text" id="motorizare" placeholder="Ex: 1.5 dCi, 1.6 MPI">
+
+      <label for="an">An fabricație:</label>
+      <input type="number" id="an" placeholder="Ex: 2015">
+
+      <label for="piesa">Ce piesă cauți?</label>
+      <textarea id="piesa" rows="4" placeholder="Ex: Far stânga, bara față, alternator..."></textarea>
+
+      <button type="submit">Trimite cererea</button>
+    </form>
+  </main>
+
+  <div class="footer">
+    &copy; 2025 Dezmembrări Dacia Vrancea. Toate drepturile rezervate.
+  </div>
+</body>
+</html>
