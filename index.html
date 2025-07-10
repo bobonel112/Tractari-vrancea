@@ -27,7 +27,6 @@
     @media (max-width: 768px) {
       .menu { display: none; }
       .hamburger { display: block; }
-      .menu-mobile { display: flex; }
     }
   </style>
 </head>
@@ -38,7 +37,7 @@
   </header>
 
   <div class="navbar">
-    <a href="#" class="logo">Tractări</a>
+    <a href="#" class="logo">Servicii</a>
     <div class="menu">
       <a href="#" onclick="sendLocation()">Trimite locația pe WhatsApp</a>
       <a href="#" onclick="sendSMS()">Trimite locația prin SMS</a>
@@ -58,7 +57,7 @@
   </div>
 
   <main>
-    <h2>📞 Sună direct: <a href="tel:+40761660940">0761 660 940</a></h2>
+    <a class="btn" href="tel:+40761660940">📞 Apelează 0761 660 940</a><br>
     <a class="btn" onclick="sendLocation()">📍 Trimite locația pe WhatsApp</a><br>
     <a class="btn" onclick="sendSMS()">📍 Trimite locația prin SMS</a>
   </main>
@@ -102,6 +101,10 @@
       const menu = document.getElementById("mobileMenu");
       menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
+
+    window.onload = function () {
+      document.getElementById("mobileMenu").style.display = "none";
+    };
   </script>
 </body>
 </html>
