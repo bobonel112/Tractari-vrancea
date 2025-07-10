@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tractări Auto Vrancea</title>
-  <meta name="description" content="Tractări auto urgente în Vrancea, cu trimitere rapidă a locației prin WhatsApp sau alte aplicații.">
+  <meta name="description" content="Tractări auto urgente în Vrancea. Trimite rapid locația prin WhatsApp sau SMS.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
@@ -25,8 +25,8 @@
   </header>
 
   <nav>
-    <a href="#" onclick="sendLocation()">WhatsApp</a>
-    <a href="#" onclick="shareLocation()">Altă aplicație</a>
+    <a href="#" onclick="sendLocation()">Trimite locația pe WhatsApp</a>
+    <a href="#" onclick="sendSMS()">Trimite locația prin SMS</a>
   </nav>
 
   <div class="social-icons">
@@ -38,7 +38,7 @@
   <main>
     <h2>📞 Sună direct: <a href="tel:+40761660940">0761 660 940</a></h2>
     <a class="btn" onclick="sendLocation()">📍 Trimite locația pe WhatsApp</a><br>
-    <a class="btn" onclick="shareLocation()">📍 Trimite locația prin altă aplicație</a>
+    <a class="btn" onclick="sendSMS()">📍 Trimite locația prin SMS</a>
   </main>
 
   <footer class="footer">
@@ -57,28 +57,17 @@
           alert("⚠️ Nu am putut obține locația. Permite accesul la GPS.");
         });
       } else {
-        alert("⚠️ Browserul tău nu suportă geolocalizare.");
+        alert("⚠️ Geolocalizarea nu este suportată de acest browser.");
       }
     }
 
-    function shareLocation() {
+    function sendSMS() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           const lat = position.coords.latitude.toFixed(5);
           const lon = position.coords.longitude.toFixed(5);
-          const locationUrl = `https://maps.google.com/?q=${lat},${lon}`;
-          const shareData = {
-            title: 'Locația mea',
-            text: 'Salut! Aceasta este locația mea pentru tractare:',
-            url: locationUrl
-          };
-          if (navigator.share) {
-            navigator.share(shareData).catch(err => {
-              alert("Nu s-a putut partaja locația.");
-            });
-          } else {
-            alert("Browserul tău nu suportă funcția de partajare automată.");
-          }
+          const message = encodeURIComponent(`Salut! Am nevoie de tractare. Locația mea este: https://maps.google.com/?q=${lat},${lon}`);
+          window.location.href = `sms:+40761660940?&body=${message}`;
         }, function() {
           alert("⚠️ Nu am putut obține locația. Permite accesul la GPS.");
         });
