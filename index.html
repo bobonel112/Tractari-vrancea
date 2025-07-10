@@ -9,13 +9,26 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
     header { background: #c62828; color: white; padding: 20px 0; text-align: center; }
-    nav { background: #b71c1c; padding: 10px; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    .navbar { background: #b71c1c; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .navbar a.logo { color: white; text-decoration: none; font-weight: bold; font-size: 18px; }
+    .menu { display: flex; gap: 15px; }
+    .menu a { color: white; text-decoration: none; font-weight: bold; }
+    .hamburger { display: none; font-size: 24px; color: white; cursor: pointer; }
+    .menu-mobile { display: none; flex-direction: column; background: #b71c1c; text-align: center; }
+    .menu-mobile a { padding: 10px; color: white; text-decoration: none; border-top: 1px solid #c62828; }
+
     .social-icons { background: #fce4ec; padding: 10px 0; text-align: center; }
     .social-icons a { margin: 0 10px; color: #c62828; font-size: 24px; text-decoration: none; }
+
     main { padding: 20px; max-width: 1000px; margin: auto; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     .btn { display: inline-block; background: #c62828; color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
     .footer { text-align: center; background: #222; color: white; padding: 20px; margin-top: 40px; }
+
+    @media (max-width: 768px) {
+      .menu { display: none; }
+      .hamburger { display: block; }
+      .menu-mobile { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -24,10 +37,19 @@
     <p>Trimite rapid locația ta pentru intervenție</p>
   </header>
 
-  <nav>
+  <div class="navbar">
+    <a href="#" class="logo">Tractări</a>
+    <div class="menu">
+      <a href="#" onclick="sendLocation()">Trimite locația pe WhatsApp</a>
+      <a href="#" onclick="sendSMS()">Trimite locația prin SMS</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="menu-mobile" id="mobileMenu">
     <a href="#" onclick="sendLocation()">Trimite locația pe WhatsApp</a>
     <a href="#" onclick="sendSMS()">Trimite locația prin SMS</a>
-  </nav>
+  </div>
 
   <div class="social-icons">
     <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -57,7 +79,7 @@
           alert("⚠️ Nu am putut obține locația. Permite accesul la GPS.");
         });
       } else {
-        alert("⚠️ Geolocalizarea nu este suportată de acest browser.");
+        alert("⚠️ Browserul tău nu suportă geolocalizare.");
       }
     }
 
@@ -74,6 +96,11 @@
       } else {
         alert("⚠️ Geolocalizarea nu este suportată de acest browser.");
       }
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
     }
   </script>
 </body>
