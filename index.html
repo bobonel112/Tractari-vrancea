@@ -1,61 +1,91 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dezmembrari Dacia Vrancea</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tractări Auto Vrancea</title>
+  <meta name="description" content="Tractări auto urgente în Vrancea, cu trimitere rapidă a locației prin WhatsApp sau alte aplicații.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
-    header { background: #900; color: white; padding: 20px; text-align: center; }
-    main { padding: 20px; }
-    form { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto 40px; }
-    form label { display: block; margin-top: 10px; }
-    form select, form input, form textarea { width: 100%; padding: 8px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; }
-    form button { margin-top: 15px; padding: 10px 15px; background: #900; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    .footer { text-align: center; padding: 20px; background: #222; color: white; }
+    header { background: #c62828; color: white; padding: 20px 0; text-align: center; }
+    nav { background: #b71c1c; padding: 10px; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    .social-icons { background: #fce4ec; padding: 10px 0; text-align: center; }
+    .social-icons a { margin: 0 10px; color: #c62828; font-size: 24px; text-decoration: none; }
+    main { padding: 20px; max-width: 1000px; margin: auto; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .btn { display: inline-block; background: #c62828; color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .footer { text-align: center; background: #222; color: white; padding: 20px; margin-top: 40px; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Dezmembrări Dacia Vrancea</h1>
-    <p>Piese din dezmembrări pentru Dacia Logan, Duster, Sandero și alte modele</p>
+    <h1>Tractări Auto Vrancea</h1>
+    <p>Trimite rapid locația ta pentru intervenție</p>
   </header>
 
+  <nav>
+    <a href="#" onclick="sendLocation()">WhatsApp</a>
+    <a href="#" onclick="shareLocation()">Altă aplicație</a>
+  </nav>
+
+  <div class="social-icons">
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+  </div>
+
   <main>
-    <h2>Cere o piesă</h2>
-    <form>
-      <label for="model">Model Dacia:</label>
-      <select id="model">
-        <option>Logan</option>
-        <option>Duster</option>
-        <option>Sandero</option>
-        <option>Dokker</option>
-        <option>Lodgy</option>
-      </select>
-
-      <label for="caroserie">Tip caroserie:</label>
-      <select id="caroserie">
-        <option>Berline</option>
-        <option>Break</option>
-        <option>Van</option>
-        <option>SUV</option>
-      </select>
-
-      <label for="motorizare">Motorizare:</label>
-      <input type="text" id="motorizare" placeholder="Ex: 1.5 dCi, 1.6 MPI">
-
-      <label for="an">An fabricație:</label>
-      <input type="number" id="an" placeholder="Ex: 2015">
-
-      <label for="piesa">Ce piesă cauți?</label>
-      <textarea id="piesa" rows="4" placeholder="Ex: Far stânga, bara față, alternator..."></textarea>
-
-      <button type="submit">Trimite cererea</button>
-    </form>
+    <h2>📞 Sună direct: <a href="tel:+40761660940">0761 660 940</a></h2>
+    <a class="btn" onclick="sendLocation()">📍 Trimite locația pe WhatsApp</a><br>
+    <a class="btn" onclick="shareLocation()">📍 Trimite locația prin altă aplicație</a>
   </main>
 
-  <div class="footer">
-    &copy; 2025 Dezmembrări Dacia Vrancea. Toate drepturile rezervate.
-  </div>
+  <footer class="footer">
+    &copy; 2025 Tractări Auto Vrancea. Toate drepturile rezervate.
+  </footer>
+
+  <script>
+    function sendLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude.toFixed(5);
+          const lon = position.coords.longitude.toFixed(5);
+          const text = encodeURIComponent(`Salut! Am nevoie de tractare. Locația mea este: https://maps.google.com/?q=${lat},${lon}`);
+          window.open(`https://wa.me/40761660940?text=${text}`, '_blank');
+        }, function() {
+          alert("⚠️ Nu am putut obține locația. Permite accesul la GPS.");
+        });
+      } else {
+        alert("⚠️ Browserul tău nu suportă geolocalizare.");
+      }
+    }
+
+    function shareLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude.toFixed(5);
+          const lon = position.coords.longitude.toFixed(5);
+          const locationUrl = `https://maps.google.com/?q=${lat},${lon}`;
+          const shareData = {
+            title: 'Locația mea',
+            text: 'Salut! Aceasta este locația mea pentru tractare:',
+            url: locationUrl
+          };
+          if (navigator.share) {
+            navigator.share(shareData).catch(err => {
+              alert("Nu s-a putut partaja locația.");
+            });
+          } else {
+            alert("Browserul tău nu suportă funcția de partajare automată.");
+          }
+        }, function() {
+          alert("⚠️ Nu am putut obține locația. Permite accesul la GPS.");
+        });
+      } else {
+        alert("⚠️ Geolocalizarea nu este suportată de acest browser.");
+      }
+    }
+  </script>
 </body>
 </html>
